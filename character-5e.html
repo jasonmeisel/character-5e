@@ -1,14 +1,35 @@
 <head>
   <title>character-5e</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
+  <div class="container">
+    <div>
+      <h1>D&amp;D 5e Character Builder</h1>
+      <p class="lead">Make your characters using modern technology</p>
+    </div>
 
-  {{> hello}}
+    {{> character_list}}
+  </div>
 </body>
 
-<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
+<template name="character_list">
+  {{#each all_characters}}
+    {{> character_sheet this}}
+  {{/each}}
+
+  <button id="new_character">New Character</button>
+</template>
+
+<template name="character_sheet">
+  <div class="panel panel-default">
+    <div>{{name}}</div>
+  </div>
 </template>

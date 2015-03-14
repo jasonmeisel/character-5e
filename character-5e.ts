@@ -1,19 +1,24 @@
 /// <reference path="typings/tsd.d.ts" />
 
-if (Meteor.isClient) {
-  // counter starts at 0
-  Session.setDefault('counter', 0);
+interface Character
+{
+  _id ?: string;
+  name : string;
+}
 
-  Template["hello"].helpers({
-    counter: function () {
-      return Session.get('counter');
+declare var CharacterDB : Mongo.Collection<Character>;
+CharacterDB = new Mongo.Collection<Character>("CharacterDB");
+
+if (Meteor.isClient) {
+  Template["character_list"].helpers({
+    all_characters: function() {
+      return CharacterDB.find({});
     }
   });
 
-  Template["hello"].events({
-    'click button': function () {
-      // increment the counter when button is clicked
-      Session.set('counter', Session.get('counter') + 1);
+  Template["character_list"].events({
+    "click #new_character" : function() {
+      CharacterDB.insert({ name : "Character name" });
     }
   });
 }
