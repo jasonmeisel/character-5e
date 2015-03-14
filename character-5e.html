@@ -36,7 +36,19 @@
     <label>Player name</label>
     <p>{{> editableText collection="CharacterDB" field="playerName"}}</p>
 
-    <!-- TODO: classes -->
+    <label>Classes</label>
+    <p class="dropdown">
+      {{classes_text}}
+      <button
+        class="btn btn-default btn-sm glyphicon glyphicon-plus"
+        id="add_class_button" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false"></button>
+      <ul id="add_classes_menu" class="dropdown-menu" role="menu" aria-labelledby="add_class_button">
+        {{#each all_classes}}
+          <li role="presentation"><a class="add_classes_select" role="menuitem" tabindex="-1" href="#">{{this}}</a></li>
+        {{/each}}
+      </ul>
+    </p>
 
     <label>Background</label>
     <p>{{> editableText collection="CharacterDB" field="background"}}</p>

@@ -33,6 +33,8 @@ interface Character
 declare var CharacterDB : Mongo.Collection<Character>;
 CharacterDB = new Mongo.Collection<Character>("CharacterDB");
 
+var AllClasses = ["Cleric", "Fighter", "Rogue", "Wizard", "Barbarian", "Druid", "Paladin", "Sorcerer", "Bard", "Monk", "Ranger", "Warlock"].sort();
+
 if (Meteor.isClient) {
   Template["character_list"].helpers({
     all_characters: function() {
@@ -43,6 +45,26 @@ if (Meteor.isClient) {
   Template["character_list"].events({
     "click #new_character" : function() {
       CharacterDB.insert({ name : "Character name" });
+    }
+  });
+
+  Template["character_sheet"].helpers({
+    classes_text : function() {
+      var classes : ClassLevel[] = this.classes || [];
+      return classes.map(cl => cl.name + " " + cl.level).join(", ");
+    },
+
+    all_classes : function() {
+      return AllClasses;
+    }
+  });
+
+  Template["character_sheet"].events({
+    "click .add_classes_select" : function(evt) {
+      var className = evt.target.innerText;
+      var char : Character = (<any>Template).parentData(1);
+      var cl : ClassLevel = { name : className, level : 1 };
+      CharacterDB.update(char._id, { $addToSet : { classes : cl } });
     }
   });
 }

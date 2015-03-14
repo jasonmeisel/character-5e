@@ -15,6 +15,7 @@
     ],
     "files": [
         "./character-5e.ts",
+        "./typings/jquery/jquery.d.ts",
         "./typings/meteor/meteor.d.ts",
         "./typings/tsd.d.ts",
         "./zzz.ts-compiler.ts"
