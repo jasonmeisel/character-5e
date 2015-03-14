@@ -1,1 +1,6 @@
-/* CSS declarations go here */
+.character_sheet .editable-text {
+  min-width: 3em;
+  min-height: 1em;
+  display: block;
+  border: 1px solid black;
+}

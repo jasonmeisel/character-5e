@@ -1,5 +1,5 @@
 <head>
-  <title>character-5e</title>
+  <title>D&amp;D 5e Character Builder</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -29,8 +29,43 @@
 </template>
 
 <template name="character_sheet">
-  <div class="panel panel-default">
-    {{> editableText collection="CharacterDB" field="name"}}
+  <div class="character_sheet panel panel-default">
+    <label>Character name</label>
+    <p>{{> editableText collection="CharacterDB" field="name"}}</p>
 
+    <label>Player name</label>
+    <p>{{> editableText collection="CharacterDB" field="playerName"}}</p>
+
+    <!-- TODO: classes -->
+
+    <label>Background</label>
+    <p>{{> editableText collection="CharacterDB" field="background"}}</p>
+
+    <label>Race</label>
+    <p>{{> editableText collection="CharacterDB" field="race"}}</p>
+
+    <label>Alignment</label>
+    <p>{{> editableText collection="CharacterDB" field="alignment"}}</p>
+
+    <label>Experience points</label>
+    <p>{{> editableText collection="CharacterDB" field="xp"}}</p>
+
+    <label>Strength</label>
+    <p>{{> editableText collection="CharacterDB" field="abilities.strength"}}</p>
+
+    <label>Dexterity</label>
+    <p>{{> editableText collection="CharacterDB" field="abilities.dexterity"}}</p>
+
+    <label>Constitution</label>
+    <p>{{> editableText collection="CharacterDB" field="abilities.constitution"}}</p>
+
+    <label>Intelligence</label>
+    <p>{{> editableText collection="CharacterDB" field="abilities.intelligence"}}</p>
+
+    <label>Wisdom</label>
+    <p>{{> editableText collection="CharacterDB" field="abilities.wisdom"}}</p>
+
+    <label>Charisma</label>
+    <p>{{> editableText collection="CharacterDB" field="abilities.charisma"}}</p>
   </div>
 </template>
