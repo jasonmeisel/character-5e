@@ -56,6 +56,10 @@ if (Meteor.isClient) {
 
     all_classes : function() {
       return AllClasses;
+    },
+
+    to_modifier : function(num : number) {
+      return (((num || 10) - 10) / 2).toFixed(0);
     }
   });
 
