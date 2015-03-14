@@ -1,0 +1,22 @@
+{
+    "version": "1.4.1",
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "declaration": false,
+        "noImplicitAny": false,
+        "removeComments": true,
+        "noLib": false,
+        "outDir": "build"
+    },
+    "filesGlob": [
+        "./**/*.ts",
+        "!./node_modules/**/*.ts"
+    ],
+    "files": [
+        "./character-5e.ts",
+        "./typings/meteor/meteor.d.ts",
+        "./typings/tsd.d.ts",
+        "./zzz.ts-compiler.ts"
+    ]
+}
