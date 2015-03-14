@@ -30,6 +30,7 @@
 
 <template name="character_sheet">
   <div class="panel panel-default">
-    <div>{{name}}</div>
+    {{> editableText collection="CharacterDB" field="name"}}
+
   </div>
 </template>
