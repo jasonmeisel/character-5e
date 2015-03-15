@@ -35,6 +35,7 @@ CharacterDB = new Mongo.Collection<Character>("CharacterDB");
 var AllClasses = ["Cleric", "Fighter", "Rogue", "Wizard", "Barbarian", "Druid", "Paladin", "Sorcerer", "Bard", "Monk", "Ranger", "Warlock"].sort();
 var AllRaces = ["Dwarf", "Elf", "Halfling", "Human", "Dragonborn", "Gnome", "Half-elf", "Half-orc", "Tiefling"].sort();
 // TODO: sub-races
+var AllBackgrounds = ["Acolyte", "Charlatan", "Criminal", "Entertainer", "Folk Hero", "Guild Artisan", "Hermit", "Noble", "Outlander", "Sage", "Sailor", "Soldier"].sort();
 
 if (Meteor.isClient) {
   (<any>Template).registerHelper("key_value", function(context, options) {
@@ -70,6 +71,10 @@ if (Meteor.isClient) {
 
     all_races : function() {
       return AllRaces;
+    },
+
+    all_backgrounds : function() {
+      return AllBackgrounds;
     }
   });
 
@@ -101,6 +106,12 @@ if (Meteor.isClient) {
     "click .races_dropdown" : function(evt) {
       var char : Character = (<any>Template).parentData(1);
       char.race = evt.target.innerText;
+      CharacterDB.update(char._id, char);
+    },
+
+    "click .backgrounds_dropdown" : function(evt) {
+      var char : Character = (<any>Template).parentData(1);
+      char.background = evt.target.innerText;
       CharacterDB.update(char._id, char);
     }
   });

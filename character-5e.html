@@ -39,7 +39,7 @@
     <label>Race</label>
     <p>
       <div class="input-group">
-        {{> editableText collection="CharacterDB" field="race" class="form-control race_box"}}
+        {{> editableText collection="CharacterDB" field="race" class="form-control"}}
         <div class="input-group-btn">
           <button type="button" class="btn btn-default btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
           <ul class="dropdown-menu races_dropdown" role="menu">
@@ -68,7 +68,20 @@
     </p>
 
     <label>Background</label>
-    <p>{{> editableText collection="CharacterDB" field="background"}}</p>
+    <p>
+      <div class="input-group">
+        {{> editableText collection="CharacterDB" field="background" class="form-control"}}
+        <div class="input-group-btn">
+          <button type="button" class="btn btn-default btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
+          <ul class="dropdown-menu backgrounds_dropdown" role="menu">
+            {{#each all_backgrounds}}
+              <li><a href="#">{{this}}</a></li>
+            {{/each}}
+          </ul>
+        </div>
+      </div>
+    </p>
+    <p></p>
 
     <label>Alignment</label>
     <p>{{> editableText collection="CharacterDB" field="alignment"}}</p>
