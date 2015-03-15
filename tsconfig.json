@@ -17,7 +17,9 @@
         "./character-5e.ts",
         "./typings/jquery/jquery.d.ts",
         "./typings/meteor/meteor.d.ts",
+        "./typings/sugar/sugar.d.ts",
         "./typings/tsd.d.ts",
+        "./typings/underscore/underscore.d.ts",
         "./zzz.ts-compiler.ts"
     ]
 }

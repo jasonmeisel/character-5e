@@ -38,13 +38,15 @@
 
     <label>Classes</label>
     <p class="dropdown">
-      {{classes_text}}
+      {{#each key_value classes}}
+        {{> class_element}}
+      {{/each}}
       <button
         class="btn btn-default btn-sm glyphicon glyphicon-plus"
         id="add_class_button" data-toggle="dropdown"
         aria-haspopup="true" aria-expanded="false"></button>
       <ul id="add_classes_menu" class="dropdown-menu" role="menu" aria-labelledby="add_class_button">
-        {{#each all_classes}}
+        {{#each new_classes}}
           <li role="presentation"><a class="add_classes_select" role="menuitem" tabindex="-1" href="#">{{this}}</a></li>
         {{/each}}
       </ul>
@@ -79,5 +81,13 @@
 
     <label>Charisma ({{to_modifier abilities.charisma}})</label>
     <p>{{> editableText collection="CharacterDB" field="abilities.charisma"}}</p>
+  </div>
+</template>
+
+<template name="class_element">
+  <div class="class_element btn-group btn-group-xs" role="group">
+    <button class="btn btn-default btn-xs">{{key}} {{value}}</button>
+    <button class="btn btn-primary btn-xs glyphicon glyphicon-plus add_level" className="{{key}}"></button>
+    <button class="btn btn-danger btn-xs glyphicon glyphicon-minus remove_level" className="{{key}}"></button>
   </div>
 </template>
