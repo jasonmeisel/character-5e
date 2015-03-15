@@ -82,25 +82,32 @@ if (Meteor.isClient) {
     "click .add_classes_select" : function(evt) {
       var className = evt.target.innerText;
       var char : Character = (<any>Template).parentData(1);
-      char.classes = char.classes || {};
-      char.classes[className] = 1;
-      CharacterDB.update(char._id, char);
+
+      var setter = {};
+      setter["classes." + className] = 1;
+      CharacterDB.update(char._id, { $set : setter } );
     },
 
     "click .add_level" : function(evt) {
       var className = evt.target.getAttribute("className");
       var char : Character = (<any>Template).parentData(1);
-      char.classes[className] += 1;
-      CharacterDB.update(char._id, char);
+
+      var setter = {};
+      setter["classes." + className] = 1;
+      CharacterDB.update(char._id, { $inc : setter } );
     },
 
     "click .remove_level" : function(evt) {
       var className = evt.target.getAttribute("className");
       var char : Character = (<any>Template).parentData(1);
-      char.classes[className] -= 1;
-      if (char.classes[className] == 0)
-        delete char.classes[className];
-      CharacterDB.update(char._id, char);
+
+      var setter = {};
+      setter["classes." + className] = -1;
+
+      if (char.classes[className] == 1)
+        CharacterDB.update(char._id, { $unset : setter });
+      else
+        CharacterDB.update(char._id, { $inc : setter });
     },
 
     "click .races_dropdown" : function(evt) {
