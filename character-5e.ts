@@ -33,6 +33,8 @@ declare var CharacterDB : Mongo.Collection<Character>;
 CharacterDB = new Mongo.Collection<Character>("CharacterDB");
 
 var AllClasses = ["Cleric", "Fighter", "Rogue", "Wizard", "Barbarian", "Druid", "Paladin", "Sorcerer", "Bard", "Monk", "Ranger", "Warlock"].sort();
+var AllRaces = ["Dwarf", "Elf", "Halfling", "Human", "Dragonborn", "Gnome", "Half-elf", "Half-orc", "Tiefling"].sort();
+// TODO: sub-races
 
 if (Meteor.isClient) {
   (<any>Template).registerHelper("key_value", function(context, options) {
@@ -64,6 +66,10 @@ if (Meteor.isClient) {
 
     to_modifier : function(num : number) {
       return (((num || 10) - 10) / 2).toFixed(0);
+    },
+
+    all_races : function() {
+      return AllRaces;
     }
   });
 
@@ -91,6 +97,12 @@ if (Meteor.isClient) {
         delete char.classes[className];
       CharacterDB.update(char._id, char);
     },
+
+    "click .races_dropdown" : function(evt) {
+      var char : Character = (<any>Template).parentData(1);
+      char.race = evt.target.innerText;
+      CharacterDB.update(char._id, char);
+    }
   });
 }
 
